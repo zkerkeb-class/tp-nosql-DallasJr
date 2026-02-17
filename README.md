@@ -1,5 +1,8 @@
 Le frontend a été fait. Mais le projet fonctionne très bien sans.  
 
+Le back-end devrait être accessible sur http://localhost:3000/  
+Le front-end devrait être accessible sur http://localhost:5173/
+
 
 **Commandes:**  
 
