@@ -9,19 +9,39 @@ import cors from 'cors';
 import pokemonRoutes from './routes/pokemons.js';
 
 import { connectDB } from "./db/connect.js";
+
 import authRouter from "./routes/auth.js";
+
+import favoritesRouter from "./routes/favorites.js";
+
+import statsRouter from "./routes/stats.js";
+
+import teamsRouter from "./routes/teams.js";
+
+import path from "path";
+import { fileURLToPath } from "url";
+
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(cors()); // Permet les requêtes cross-origin (ex: frontend sur un autre port)
 
-app.use('/assets', express.static('assets')); // Permet d'accéder aux fichiers dans le dossier "assets" via l'URL /assets/...
+app.use("/assets", express.static(path.join(__dirname, "assets"))); // Permet d'accéder aux fichiers dans le dossier "assets" via l'URL /assets/...
 
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
 
 app.use('/api/pokemons', pokemonRoutes);
+
+app.use("/api/favorites", favoritesRouter);
+
+app.use("/api/stats", statsRouter);
+
+app.use("/api/teams", teamsRouter);
 
 
 app.get('/', (req, res) => {
